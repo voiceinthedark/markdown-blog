@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use GrahamCampbell\Markdown\Facades\Markdown;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 class Article extends Model
 {
@@ -31,17 +34,24 @@ class Article extends Model
     }
 
     public function getLatest(){
-        // $articles = [];
-        // foreach ($this->filesNames as $filename) {
-        //     $articles[] = $this->getArticleData($filename);
-        // }
-        // return collect($articles);
-        return $this->filesNames;
+        $articles = [];
+        foreach ($this->filesNames as $filename) {
+            $articles[] = $this->getArticleData($filename);
+        }
+        return collect($articles);
+        // return $this->filesNames;
     }
 
     public function getArticleData($filename){
-        $file = $this->fileSystem->get(resource_path('views/'.$filename.'.md'));
-        return $file;
+        $file = $this->fileSystem->get(resource_path('views/articles/'.$filename[0].'/'.$filename[1]));
+
+        $yamlFM = YamlFrontMatter::parse($file);
+
+        $post['meta'] = $yamlFM->matter();
+        $post['slug'] = Str::replace('.md', '', $filename[1]);
+        $post['body'] = Markdown::convert($file)->getContent();
+
+        return $post;
     }
 
 }
