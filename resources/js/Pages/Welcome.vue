@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col min-h-screen">
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4 font-display">
             <span class="text-6xl"
                 ><span class="text-sky-600">{</span>Coding<span
                     class="text-emerald-600"

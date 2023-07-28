@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
 export default {
     content: [
         "./resources/**/*.blade.php",
@@ -7,6 +8,13 @@ export default {
     ],
     theme: {
         extend: {},
+        fontFamily: {
+            sans: [...defaultTheme.fontFamily.sans, "Oswald"],
+            serif: [...defaultTheme.fontFamily.serif],
+            mono: [...defaultTheme.fontFamily.mono],
+            display: ["Calistoga"],
+            bodymono: ["Source Code Pro"],
+        },
     },
     plugins: [],
 };
