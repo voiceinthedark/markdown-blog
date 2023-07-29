@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use League\CommonMark\Extension\Attributes\AttributesExtension;
+use League\CommonMark\Extension\Embed\Bridge\OscaroteroEmbedAdapter;
+use League\CommonMark\Extension\Embed\Embed;
 
 /*
  * This file is part of Laravel Markdown.
@@ -50,6 +52,8 @@ return [
         League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension::class,
         League\CommonMark\Extension\Table\TableExtension::class,
         AttributesExtension::class,
+        Embed::class,
+        OscaroteroEmbedAdapter::class,
     ],
 
     /*

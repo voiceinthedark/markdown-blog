@@ -1,4 +1,7 @@
 <template>
+    <div class="flex justify-between">
+        <span class="text-sm text-gray-300">{{ formatDate(article.meta.published_at * 1000) }}</span>
+    </div>
     <div v-html="article.body"></div>
 
 </template>
@@ -6,6 +9,11 @@
 defineProps({
     article: Object
 })
+
+function formatDate(date) {
+    const options = { hour: 'numeric', minute: 'numeric', year: 'numeric', month: 'short', day: 'numeric', weekday: 'short' };
+    return new Date(date).toLocaleDateString('en-GB', options)
+}
 </script>
 <style scoped>
 :deep(p,
@@ -24,7 +32,7 @@ h4,
 .splendor-h4) {
   margin: 1.414rem 0 .5rem;
   font-weight: inherit;
-  line-height: 1.42;
+  line-height: 1.12;
 }
 
 :deep(h1,
@@ -72,7 +80,9 @@ video,
 svg,
 select,
 textarea) {
-  max-width: 100%;
+  width: 60%;
+  margin-top: 1rem;
+  margin-left: auto;
 }
 
 @import url(http://fonts.googleapis.com/css?family=Merriweather:300italic,300);

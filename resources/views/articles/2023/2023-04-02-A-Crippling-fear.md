@@ -1,6 +1,7 @@
 ---
 title: A Crippling Fear
-date: 2023-04-02T00:00:00+00:00
+published_at: 2023-04-02T00:00:00+00:00
+updated_at: 2023-04-02T00:00:00+00:00
 type: article
 description: Crippling Fear
 link: /2023/2023-04-02-A-Crippling-fear

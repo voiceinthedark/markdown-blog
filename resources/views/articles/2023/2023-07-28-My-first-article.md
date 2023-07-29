@@ -1,6 +1,7 @@
 ---
 title: My first article
-date: 2023-07-28T00:00:00+00:00
+published_at: 2023-07-28T00:00:00+00:00
+updated_at: 2023-07-28T00:00:00+00:00
 type: article
 description: My first article
 link: /2023/2023-07-28-My-first-article
@@ -23,8 +24,10 @@ lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor inc
 
 ```json
 {
-  "firstName": "John",
+    "firstName": "John",
   "lastName": "Smith",
   "age": 25
 }
 ``` 
+
+https://www.youtube.com/watch?v=4JbQAKG6cfw
