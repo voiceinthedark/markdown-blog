@@ -10,7 +10,7 @@ import NavLink from '../Components/Shared/NavLink.vue';
           <NavLink href="/blog/" :active="$page.url.startsWith('/blog')">Blog</NavLink>
       </div>
     </header>
-    <article class="min-w-[100%] mx-2 grid grid-cols-1 gap-1 mt-20 lg:col-span-4">
+    <article class="min-w-[100%] mx-2 grid grid-cols-1 gap-1 mt-20 lg:col-span-4 mb-28">
       <slot />
     </article>
   </main>

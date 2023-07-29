@@ -3,7 +3,7 @@ title: A tragedy in black
 date: 2022-07-11T00:00:00+00:00
 type: article
 description: A Tragedy in black
-link: https://www.example.com
+link: /2022/2022-07-11-A-Tragedy-in-black
 image: /images/image1.png
 tags: [tag1, tag2]
 ---

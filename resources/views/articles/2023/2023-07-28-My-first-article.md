@@ -3,7 +3,7 @@ title: My first article
 date: 2023-07-28T00:00:00+00:00
 type: article
 description: My first article
-link: https://www.example.com
+link: /2023/2023-07-28-My-first-article
 image: https://www.example.com
 tags: [tag1, tag2]
 ---
