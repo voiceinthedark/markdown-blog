@@ -8,6 +8,7 @@
                 >
                 with <span class="text-sky-500">Firas</span>
             </span>
+
             <svg
                     width="42px"
                     height="42px"

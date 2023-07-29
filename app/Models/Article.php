@@ -49,7 +49,7 @@ class Article extends Model
 
         $post['meta'] = $yamlFM->matter();
         $post['slug'] = Str::replace('.md', '', $filename[1]);
-        $post['body'] = Markdown::convert($file)->getContent();
+        $post['body'] = Markdown::convert($yamlFM->body())->getContent();
 
         return $post;
     }
