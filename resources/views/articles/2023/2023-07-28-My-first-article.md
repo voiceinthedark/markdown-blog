@@ -9,18 +9,22 @@ image: https://www.example.com
 tags: [tag1, tag2]
 ---
 
-# An Article
+## A paragraph
+lorem ipsum **dolor**{: .red }[^1] sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 
-lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+## A blockquote
 
-> blockquote 
+> blockquote
+{: title="Blockquote title"}
 
-| Syntax | Description |
+## A table
+
+| Syntax | Description | 
 | ----------- | ----------- |
 | Header | Title |
 | Paragraph | Text | 
 
-
+## A code
 
 ```json
 {
@@ -30,4 +34,9 @@ lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor inc
 }
 ``` 
 
+## A video
+
 https://www.youtube.com/watch?v=4JbQAKG6cfw
+
+
+[^1]: Bla bla

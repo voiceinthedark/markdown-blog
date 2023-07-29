@@ -1,8 +1,11 @@
 <template>
-    <div class="flex justify-between">
-        <span class="text-sm text-gray-300">{{ formatDate(article.meta.published_at * 1000) }}</span>
+    <div class="flex flex-col gap-9">
+        <div class="flex justify-between">
+            <span class="text-sm text-gray-300">{{ formatDate(article.meta.published_at * 1000) }}</span>
+        </div>
+        <div class="text-blue-400 text-7xl">{{ article.meta.title }}</div>
+        <div v-html="article.body"></div>
     </div>
-    <div v-html="article.body"></div>
 
 </template>
 <script setup>
@@ -184,4 +187,29 @@ a:active) {
     padding: .5rem;
     border-right: #3498db 1px solid;
 }
+
+:deep(.red){
+    color: #e74c3c;
+}
+
+/* Styling for Permalinks */
+
+:deep(.heading-permalink) {
+    font-size: 1em;
+    vertical-align: baseline;
+    text-decoration: none;
+    color: transparent;
+}
+
+:deep(h1:hover .heading-permalink,
+h2:hover .heading-permalink,
+h3:hover .heading-permalink,
+h4:hover .heading-permalink,
+h5:hover .heading-permalink,
+h6:hover .heading-permalink,
+.heading-permalink:hover) {
+    text-decoration: none;
+    color: #777;
+}
+
 </style>
