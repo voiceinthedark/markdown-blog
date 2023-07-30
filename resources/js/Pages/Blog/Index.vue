@@ -19,6 +19,7 @@ import NavLink from '../../Components/Shared/NavLink.vue'
 defineProps({
     articles: Object
 })
+
 </script>
 
 <style scoped>

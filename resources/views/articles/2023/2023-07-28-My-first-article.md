@@ -33,10 +33,16 @@ lorem ipsum **dolor**{: .red }[^1] sit amet consectetur adipiscing elit sed do e
   "age": 25
 }
 ``` 
+### Sub code
+```javascript
+let x = 0;
+```
 
 ## A video
 
 https://www.youtube.com/watch?v=4JbQAKG6cfw
+
+Follow me @voiceinthedark
 
 
 [^1]: Bla bla
