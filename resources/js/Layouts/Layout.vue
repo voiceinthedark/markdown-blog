@@ -24,10 +24,10 @@ watch(() => store.sharedData, (newVal) => {
           <NavLink href="/blog/" :active="$page.url.startsWith('/blog')">Blog</NavLink>
       </div>
     </header>
-    <article class="min-w-[100%] mx-2 grid grid-cols-1 gap-1 mt-20 lg:col-span-4 mb-28">
+    <article class="min-w-[100%] mx-2 grid grid-cols-1 gap-1 mt-20 lg:col-span-4 mb-28 scroll-smooth">
       <slot name="default"/>
     </article>
-    <aside >
+    <aside>
         <SideLayout :toc="tableOfContents"/>
     </aside>
   </main>

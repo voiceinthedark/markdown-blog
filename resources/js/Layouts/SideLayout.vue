@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex flex-col items-center justify-end mt-20 mr-3 lg:top-0 lg:sticky"
+        class="flex flex-col items-center justify-end mt-20 mr-3 lg:top-0 lg:sticky scroll-smooth"
     >
         <span class="text-4xl text-right">A {Coding} Journey</span>
         <!-- Fix for when the the users leave the page and the TOC remains persistent -->

@@ -1,5 +1,5 @@
 <template #default>
-    <div class="flex flex-col gap-9">
+    <div class="flex flex-col gap-9 scroll-smooth">
         <div class="flex justify-between">
             <span class="text-sm text-gray-300">{{
                 formatDate(article.meta.published_at * 1000)
@@ -60,7 +60,13 @@ function extractTOC(article) {
 
 onMounted(() => {
     extractTOC(props.article);
+    // Handle scroll event
     window.addEventListener("scroll", handleScroll);
+    // Handle smooth scroll on TOC click
+    const tocHead = document.querySelector(".table-of-contents");
+    tocHead.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", handleTocClick);
+    })
 });
 
 onUnmounted(() => {
@@ -89,9 +95,35 @@ function handleScroll() {
             // get the active heading href attribute value
             active = heading.firstElementChild.id;
         }
+        // console.log(heading);
+        // Add smooth scrolling through TOC click
+        heading.querySelector("a").addEventListener("click", handleHeadingClick);
     }
     activeHeading.value = active;
     store.activeHeading = active;
+}
+
+function handleHeadingClick(e) {
+    e.preventDefault();
+    window.scrollTo({
+        top: e.target.offsetTop,
+        behavior: "smooth",
+    });
+}
+
+function handleTocClick(e) {
+    e.preventDefault();
+    // console.log(e.target.href.split('#')[1]);
+    const header = document.querySelector('a[id="' + e.target.href.split('#')[1] + '"]');
+    // console.log(header);
+    if (header){
+        // console.log(header);
+        window.scrollTo({
+            top: header.offsetTop,
+            behavior: "smooth",
+        });
+    }
+
 }
 </script>
 
