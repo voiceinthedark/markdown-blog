@@ -47,6 +47,10 @@ function extractTOC(article) {
 onMounted(() => {
     extractTOC(props.article);
 });
+
+router.on('before', (event) => {
+  store.sharedData = [];
+})
 </script>
 
 <style scoped>

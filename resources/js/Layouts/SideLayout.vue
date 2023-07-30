@@ -2,7 +2,7 @@
 
         <div class="flex flex-col items-center justify-end mt-20 mr-3 lg:top-0 lg:sticky">
             <span class="text-4xl text-right">A {Coding} Journey</span>
-            <div v-if="toc" class="mt-32">
+            <div v-if="toc && toc.length > 0" class="mt-32">
                 <div v-html="toc[0].outerHTML"></div>
             </div>
         </div>
