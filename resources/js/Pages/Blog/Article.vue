@@ -41,7 +41,7 @@ function extractTOC(article) {
     let doc = parser.parseFromString(article.body, "text/html");
     let toc = doc.querySelectorAll(".table-of-contents");
     store.sharedData = toc;
-    // console.log(store.sharedData);
+    console.log(store.sharedData);
 }
 
 onMounted(() => {
