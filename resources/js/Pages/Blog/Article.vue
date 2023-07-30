@@ -12,7 +12,7 @@
 
 <script setup>
 import { router } from "@inertiajs/vue3";
-import { onMounted, ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import { store } from "../../stores/useSharedStore";
 import Layout from "../../Layouts/Layout.vue";
 
@@ -25,6 +25,12 @@ const props = defineProps({
     article: Object,
 });
 
+/**
+ * Formats a given date into a localized string representation.
+ *
+ * @param {Date} date - The date to be formatted.
+ * @return {string} The formatted date string.
+ */
 function formatDate(date) {
     const options = {
         hour: "numeric",
@@ -36,21 +42,59 @@ function formatDate(date) {
     };
     return new Date(date).toLocaleDateString("en-GB", options);
 }
+// This function extracts the table of contents (TOC) from an article.
 function extractTOC(article) {
+    // Create a DOMParser object to parse the article's body as HTML.
     let parser = new DOMParser();
+
+    // Parse the article's body as HTML and store the resulting document in the 'doc' variable.
     let doc = parser.parseFromString(article.body, "text/html");
+
+    // Select all elements with the class 'table-of-contents' from the parsed document and store them in the 'toc' variable.
     let toc = doc.querySelectorAll(".table-of-contents");
-    store.sharedData = toc;
-    console.log(store.sharedData);
+
+    // Store the table of contents in the sharedData property of the store object.
+    store.sharedData = toc.item(0).outerHTML;
+    // console.log(store.sharedData);
 }
 
 onMounted(() => {
     extractTOC(props.article);
+    window.addEventListener("scroll", handleScroll);
 });
 
-router.on('before', (event) => {
-  store.sharedData = [];
-})
+onUnmounted(() => {
+    window.removeEventListener("scroll", handleScroll);
+});
+
+/* when user leave the page reset the TOC to empty
+ */
+router.on("before", (event) => {
+    store.sharedData = [];
+});
+
+let activeHeading = ref('');
+
+// When the user moves through the documents, scroll the table of contents.
+function handleScroll() {
+    // capture the headings
+    const headings = document.querySelectorAll("h2, h3, h4, h5, h6");
+    let active = '';
+
+
+    for(const heading of headings){
+        // console.log(heading.textContent);
+        const rect = heading.getBoundingClientRect();
+        if(rect.top < window.innerHeight/2) {
+            // get the active heading href attribute value
+            active = heading.firstElementChild.id;
+            // console.log(active);
+        }
+    }
+    activeHeading.value = active;
+    // console.log(activeHeading.value);
+    store.activeHeading = active;
+}
 </script>
 
 <style scoped>
@@ -128,10 +172,10 @@ router.on('before', (event) => {
     font-style: italic;
     margin: 1rem auto 1rem;
     max-width: 48rem;
-    background: #3f3d3d;
-    padding: 0.88rem 2rem;
+    background: #11446e;
+    padding: 0.88rem 1.5rem;
     border-radius: 10px;
-    border: 1px solid #3f3d3d;
+    border: 1px solid #085563;
 }
 
 :deep(ul) {
@@ -168,7 +212,6 @@ router.on('before', (event) => {
 }
 
 :deep(pre) {
-    background-color: #3b4252;
     border-radius: 12px;
     font-size: 0.9rem;
     overflow-x: scroll;
@@ -236,5 +279,45 @@ router.on('before', (event) => {
     color: #fcfcfc;
     rotate: -15deg;
     transition: all 0.3s ease;
+}
+
+:deep(pre code.torchlight) {
+    min-width: -webkit-max-content;
+    min-width: -moz-max-content;
+    min-width: max-content;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+:deep(pre code.torchlight .line) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+:deep(pre code.torchlight .line-number, pre code.torchlight .summary-caret) {
+    margin-right: 1rem;
+}
+
+/*
+
+  Blur and dim the lines that don't have the `.line-focus` class,
+
+  but are within a code block that contains any focus lines.
+
+*/
+
+:deep(.torchlight.has-focus-lines .line:not(.line-focus)) {
+    transition: filter 0.35s, opacity 0.35s;
+    filter: blur(0.095rem);
+    opacity: 0.65;
+}
+
+/*
+  When the code block is hovered, bring all the lines into focus.
+*/
+
+:deep(.torchlight.has-focus-lines:hover .line:not(.line-focus)) {
+    filter: blur(0px);
+    opacity: 1;
 }
 </style>

@@ -14,6 +14,9 @@ use League\CommonMark\Extension\Footnote\FootnoteExtension;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\Mention\MentionExtension;
 use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
+use League\CommonMark\Extension\TaskList\TaskListExtension;
+use Torchlight\Commonmark\V2\TorchlightExtension;
+
 
 class Markdown
 {
@@ -120,6 +123,8 @@ class Markdown
         $environment->addExtension(new HeadingPermalinkExtension());
         $environment->addExtension(new MentionExtension());
         $environment->addExtension(new TableOfContentsExtension());
+        $environment->addExtension(new TaskListExtension());
+        $environment->addExtension(new TorchlightExtension);
 
         // Instantiate the converter engine and start converting some Markdown!
         $converter = new MarkdownConverter($environment);

@@ -1,5 +1,8 @@
 import { reactive } from 'vue'
 
 export const store = reactive({
-    sharedData: null
+    // Store the content of the TOC
+    sharedData: null,
+    // Store the active heading
+    activeHeading: null,
 })
