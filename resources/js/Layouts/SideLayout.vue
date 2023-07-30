@@ -21,15 +21,17 @@ const processedToc = computed(() => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(data.toc, "text/html");
     const headings = doc.querySelectorAll("a");
+    // console.log(headings);
 
-    for (const heading of headings) {
+    headings.forEach((heading) => {
         heading.addEventListener("click", handleHeadingClick);
-    }
+    });
 
     return doc.body.innerHTML;
 });
 
 function handleHeadingClick(e) {
+    console.log('object', e.target);
     e.preventDefault();
     window.scrollTo({
         top: e.target.offsetTop,
@@ -51,13 +53,10 @@ watch(
                 .querySelector(".table-of-contents")
                 .querySelectorAll("a");
             for (const heading of headings) {
-                // console.log(heading.href.split("#")[1], activeHeading);
                 if (heading.href.split("#")[1] === `${activeHeading}`) {
                     heading.className = "active";
-                    // console.log(`setting active heading to ${activeHeading}`);
                 } else {
                     heading.className = "";
-                    // console.log(`removing active heading from ${activeHeading}`);
                 }
             }
         }

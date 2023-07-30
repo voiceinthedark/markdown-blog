@@ -64,9 +64,11 @@ onMounted(() => {
     window.addEventListener("scroll", handleScroll);
     // Handle smooth scroll on TOC click
     const tocHead = document.querySelector(".table-of-contents");
-    tocHead.querySelectorAll("a").forEach((a) => {
-        a.addEventListener("click", handleTocClick);
-    })
+    if (tocHead) {
+        tocHead.querySelectorAll("a").forEach((a) => {
+            a.addEventListener("click", handleTocClick);
+        });
+    }
 });
 
 onUnmounted(() => {
@@ -79,25 +81,26 @@ router.on("before", (event) => {
     store.sharedData = [];
 });
 
-let activeHeading = ref('');
+let activeHeading = ref("");
 
 // When the user moves through the documents, scroll the table of contents.
 function handleScroll() {
     // capture the headings
     const headings = document.querySelectorAll("h2, h3, h4, h5, h6");
-    let active = '';
+    let active = "";
 
-
-    for(const heading of headings){
+    for (const heading of headings) {
         // console.log(heading.textContent);
         const rect = heading.getBoundingClientRect();
-        if(rect.top < window.innerHeight  / 2) {
+        if (rect.top < window.innerHeight / 2) {
             // get the active heading href attribute value
             active = heading.firstElementChild.id;
         }
         // console.log(heading);
         // Add smooth scrolling through TOC click
-        heading.querySelector("a").addEventListener("click", handleHeadingClick);
+        heading
+            .querySelector("a")
+            .addEventListener("click", handleHeadingClick);
     }
     activeHeading.value = active;
     store.activeHeading = active;
@@ -114,16 +117,17 @@ function handleHeadingClick(e) {
 function handleTocClick(e) {
     e.preventDefault();
     // console.log(e.target.href.split('#')[1]);
-    const header = document.querySelector('a[id="' + e.target.href.split('#')[1] + '"]');
+    const header = document.querySelector(
+        'a[id="' + e.target.href.split("#")[1] + '"]'
+    );
     // console.log(header);
-    if (header){
+    if (header) {
         // console.log(header);
         window.scrollTo({
             top: header.offsetTop,
             behavior: "smooth",
         });
     }
-
 }
 </script>
 
