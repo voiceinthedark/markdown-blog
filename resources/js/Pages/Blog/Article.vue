@@ -54,7 +54,7 @@ function extractTOC(article) {
     let toc = doc.querySelectorAll(".table-of-contents");
 
     // Store the table of contents in the sharedData property of the store object.
-    store.sharedData = toc.item(0).outerHTML;
+    store.sharedData = toc && toc.length > 0 ? toc.item(0).outerHTML : "";
     // console.log(store.sharedData);
 }
 
@@ -85,14 +85,12 @@ function handleScroll() {
     for(const heading of headings){
         // console.log(heading.textContent);
         const rect = heading.getBoundingClientRect();
-        if(rect.top < window.innerHeight/2) {
+        if(rect.top < window.innerHeight  / 2) {
             // get the active heading href attribute value
             active = heading.firstElementChild.id;
-            // console.log(active);
         }
     }
     activeHeading.value = active;
-    // console.log(activeHeading.value);
     store.activeHeading = active;
 }
 </script>

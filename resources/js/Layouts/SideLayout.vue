@@ -47,18 +47,17 @@ watch(
             // select the heading in the side TOC
             const currentAside = document.querySelector("aside");
 
-            console.log(currentAside.querySelector('.table-of-contents').querySelectorAll("a"));
-            const headings = currentAside.querySelector('.table-of-contents').querySelectorAll("a")
+            const headings = currentAside
+                .querySelector(".table-of-contents")
+                .querySelectorAll("a");
             for (const heading of headings) {
-                console.log(heading.href.split("#")[1], activeHeading);
+                // console.log(heading.href.split("#")[1], activeHeading);
                 if (heading.href.split("#")[1] === `${activeHeading}`) {
                     heading.className = "active";
-                    console.log(`setting active heading to ${activeHeading}`);
+                    // console.log(`setting active heading to ${activeHeading}`);
                 } else {
                     heading.className = "";
-                    console.log(
-                        `removing active heading from ${activeHeading}`
-                    );
+                    // console.log(`removing active heading from ${activeHeading}`);
                 }
             }
         }
@@ -68,8 +67,7 @@ watch(
 
 <style scoped>
 :deep(.active) {
-    @apply bg-sky-600 rounded-md px-4 font-bold;
-    font-weight: bold;
+    @apply bg-sky-800 rounded-md px-2 text-white font-bold;
 }
 
 :deep(ul) {
