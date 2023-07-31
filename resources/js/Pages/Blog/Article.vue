@@ -1,11 +1,12 @@
 <template #default>
-    <div class="flex flex-col gap-9 scroll-smooth">
+    <div class="flex flex-col mb-40 gap-9 scroll-smooth">
+        <div><img :src="article.meta.image" class="w-full rounded-md shadow-md" alt="cover image"></div>
         <div class="flex justify-between">
             <span class="text-sm text-gray-300">{{
                 formatDate(article.meta.published_at * 1000)
             }}</span>
         </div>
-        <div class="text-blue-400 text-7xl">{{ article.meta.title }}</div>
+        <div class="text-2xl text-blue-400 lg:text-7xl">{{ article.meta.title }}</div>
         <div v-html="article.body"></div>
     </div>
 </template>
@@ -141,35 +142,43 @@ function handleTocClick(e) {
     margin: 1.414rem 0 0.5rem;
     font-weight: inherit;
     line-height: 1.12;
+    color: #3498db;
 }
 
 :deep(h1, .splendor-h1) {
     margin-top: 0;
     font-size: 3.698rem;
+    color: #3498db;
 }
 
 :deep(h2, .splendor-h2) {
     font-size: 2.527rem;
+    color: #3498db;
 }
 
 :deep(h3, .splendor-h3) {
     font-size: 1.799rem;
+    color: #3498db;
 }
 
 :deep(h4, .splendor-h4) {
     font-size: 1.214rem;
+    color: #3498db;
 }
 
 :deep(h5, .splendor-h5) {
     font-size: 1.021rem;
+    color: #3498db;
 }
 
 :deep(h6, .splendor-h6) {
     font-size: 0.88rem;
+    color: #3498db;
 }
 
 :deep(small, .splendor-small) {
     font-size: 0.707em;
+    color: #3498db;
 }
 
 /* https://github.com/mrmrs/fluidity */
@@ -333,11 +342,8 @@ function handleTocClick(e) {
 }
 
 /*
-
   Blur and dim the lines that don't have the `.line-focus` class,
-
   but are within a code block that contains any focus lines.
-
 */
 
 :deep(.torchlight.has-focus-lines .line:not(.line-focus)) {
@@ -353,5 +359,9 @@ function handleTocClick(e) {
 :deep(.torchlight.has-focus-lines:hover .line:not(.line-focus)) {
     filter: blur(0px);
     opacity: 1;
+}
+
+:deep(.table-of-contents){
+    @apply mb-20 mt-6
 }
 </style>

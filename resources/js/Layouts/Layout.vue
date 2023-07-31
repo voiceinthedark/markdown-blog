@@ -10,9 +10,7 @@ let tableOfContents = ref(null);
 watch(
     () => store.sharedData,
     (newVal) => {
-        // console.log(`received in layout: ${newVal}`);
         tableOfContents.value = newVal;
-        // console.log(tableOfContents.value);
     }
 );
 </script>

@@ -12,3 +12,6 @@ tags: [tag1, tag2]
 # Crippling Fear
 
 Cripple cripple, doost!
+
+
+![](/images/2023-07-31-03-26-10.png "A peacock with a broken wing.") {: style="width: 500px; height: 500px; margin: auto;"} 
