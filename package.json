@@ -15,6 +15,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@inertiajs/vue3": "^1.0.9"
+        "@inertiajs/vue3": "^1.0.9",
+        "mermaid": "^10.3.0"
     }
 }

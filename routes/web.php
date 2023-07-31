@@ -22,3 +22,4 @@ Route::get('/', function () {
 
 Route::get('/blog', [ArticleController::class, 'index'])->name('blog.index');
 Route::get('/blog/{article}', [ArticleController::class, 'show'])->name('blog.show');
+Route::get('/blog/{tag}', [TagController::class, 'index'])->name('blog.tag');
