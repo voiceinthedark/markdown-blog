@@ -2,7 +2,7 @@
 title: How To Send data from a Vue Page to a persistent Layout
 published_at: 2023-07-30T00:39:00+03:00
 updated_at: 2023-07-31T04:13:00+03:00
-type: art
+type: article
 description: How to send data from a vue page to a persistent layout in Laravel + inertiajs
 link: /2023/2023-07-30-how-to-send-data-from-page-to-layout
 image: /images/2023-07-31-04-22-45.png
@@ -109,7 +109,7 @@ And then we simply pass it to the side layout as a prop:
 ```
 
 
-[^1]: https://www.digitalocean.com/community/tutorials/vuejs-global-event-bus
+[^1]: [digital ocean global event bus](https://www.digitalocean.com/community/tutorials/vuejs-global-event-bus)
 
 
 

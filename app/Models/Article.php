@@ -37,6 +37,8 @@ class Article extends Model
         $this->fileNames = collect(File::allFiles(resource_path('views/articles'), '.*'))->filter(function ($file) {
             // dd($file);
             return pathinfo($file, PATHINFO_EXTENSION) === 'md';
+        })->sortByDesc(function($file){
+            return $file->getBasename();
         })
             ->map(function ($file) {
                 $directory = Arr::last(explode('/', $file->getPath()));

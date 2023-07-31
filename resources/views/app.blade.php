@@ -21,6 +21,10 @@
 
 <body class="text-white bg-gray-900">
     @inertia
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        // mermaid.initialize();
+    </script>
 </body>
 
 </html>

@@ -57,6 +57,7 @@ function extractTOC(article) {
     // Store the table of contents in the sharedData property of the store object.
     store.sharedData = toc && toc.length > 0 ? toc.item(0).outerHTML : "";
     // console.log(store.sharedData);
+    handleMermaidCharts(doc);
 }
 
 onMounted(() => {
@@ -129,6 +130,23 @@ function handleTocClick(e) {
             behavior: "smooth",
         });
     }
+}
+
+// capture a mermaid chart in the on <pre></pre> or <code></code>
+function handleMermaidCharts(docParser){
+    let mermaidCharts = docParser.querySelectorAll('code');
+    if(mermaidCharts && mermaidCharts.length > 0){
+        // console.log(mermaidCharts);
+        mermaidCharts.forEach(chart => {
+            console.log(chart);
+            if(chart.getAttribute('data-lang') === 'mermaid'){
+                chart.className = 'mermaid';
+                chart.classList.add('mermaid');
+                chart.classList.remove('torchlight');
+            }
+        })
+    }
+    return;
 }
 </script>
 
