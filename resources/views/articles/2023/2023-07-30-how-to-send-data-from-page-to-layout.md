@@ -112,6 +112,18 @@ And then we simply pass it to the side layout as a prop:
 
 ![Solution Diagram](/images/2023-07-31-20-08-42.png){: style="width: 60%; margin: auto;"}
 
+<pre class="mermaid">
+stateDiagram-v2
+    [*] --> Extract_TOC
+    Extract_TOC --> Send_TOC_TO_Persistent_Layout
+    Extract_TOC --> Store_TOC_IN_Shared_Store
+    Send_TOC_TO_Persistent_Layout --> Store_TOC_IN_Shared_Store
+    Store_TOC_IN_Shared_Store --> Send_TOC_TO_Persistent_Layout
+    Send_TOC_TO_Persistent_Layout --> Send_TOC_TO_Side_Layout
+    Send_TOC_TO_Side_Layout --> [*]
+
+</pre>
+
 
 
 

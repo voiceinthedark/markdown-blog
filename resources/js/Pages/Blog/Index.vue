@@ -15,9 +15,15 @@
 <script setup>
 import ArticleCard from './ArticleCard.vue';
 import NavLink from '../../Components/Shared/NavLink.vue'
+import { router } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
 
 defineProps({
     articles: Object
+})
+
+onMounted(() => {
+    router.reload()
 })
 
 </script>

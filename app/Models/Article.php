@@ -79,10 +79,25 @@ class Article extends Model
 
         $parsedContent = YamlFrontMatter::parse($fileContent);
 
+        $post['id'] = $filename[1];
         $post['meta'] = $parsedContent->matter();
+        $post['tags'] = $parsedContent->matter('tags');
         $post['slug'] = Str::replace('.md', '', $filename[1]);
         $post['body'] = $this->converter->convert($parsedContent->body());
 
         return $post;
+    }
+
+    public function getTag($tag){
+        $posts = [];
+
+        foreach ($this->fileNames as $fileName) {
+            $posts[] = $this->getArticleData($fileName);
+        }
+        // dd($posts);
+        // collect only the posts where tag is in the tags array
+        return collect($posts)->filter(function ($post) use ($tag) {
+            return in_array($tag, $post['tags']);
+        });
     }
 }

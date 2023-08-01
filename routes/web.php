@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleController;
 use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +23,4 @@ Route::get('/', function () {
 
 Route::get('/blog', [ArticleController::class, 'index'])->name('blog.index');
 Route::get('/blog/{article}', [ArticleController::class, 'show'])->name('blog.show');
-Route::get('/blog/{tag}', [TagController::class, 'index'])->name('blog.tag');
+Route::get('/blog/tags/{tag}', [TagController::class, 'show'])->name('blog.tag');

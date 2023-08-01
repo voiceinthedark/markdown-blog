@@ -29,8 +29,8 @@ createInertiaApp({
 
 const config = {
     theme: "default",
-    logLevel: "fatal",
-    securityLevel: "strict",
+    logLevel: "error",
+    securityLevel: "loose",
     startOnLoad: true,
     arrowMarkerAbsolute: false,
 

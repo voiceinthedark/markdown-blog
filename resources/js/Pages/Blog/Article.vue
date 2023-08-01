@@ -1,12 +1,21 @@
 <template #default>
     <div class="flex flex-col mb-40 gap-9 scroll-smooth">
-        <div><img :src="article.meta.image" class="w-full rounded-md shadow-md" alt="cover image"></div>
+        <div>
+            <img
+                :src="article.meta.image"
+                class="w-full rounded-md shadow-md"
+                alt="cover image"
+            />
+        </div>
         <div class="flex justify-between">
             <span class="text-sm text-gray-300">{{
                 formatDate(article.meta.published_at * 1000)
             }}</span>
+            <TagList :tags="article.tags" />
         </div>
-        <div class="text-2xl text-blue-400 lg:text-7xl">{{ article.meta.title }}</div>
+        <div class="text-2xl text-blue-400 lg:text-7xl">
+            {{ article.meta.title }}
+        </div>
         <div v-html="article.body"></div>
     </div>
 </template>
@@ -15,12 +24,11 @@
 import { router } from "@inertiajs/vue3";
 import { onMounted, onUnmounted, ref } from "vue";
 import { store } from "../../stores/useSharedStore";
-import Layout from "../../Layouts/Layout.vue";
-
-defineOptions({
-    layout: [Layout],
-    name: "TableOfContent",
-});
+import TagList from "./Tags/TagList.vue";
+// defineOptions({
+//     layout: [Layout],
+//     name: "TableOfContent",
+// });
 
 const props = defineProps({
     article: Object,
@@ -71,7 +79,28 @@ onMounted(() => {
             a.addEventListener("click", handleTocClick);
         });
     }
+
+    // sanitizeMermaidCode();
+    router.reload();
 });
+
+function sanitizeMermaidCode() {
+    document
+        .querySelectorAll("pre.mermaid, pre>code.language-mermaid")
+        .forEach(($el) => {
+            // if the second selector got a hit, reference the parent <pre>
+            if ($el.tagName === "CODE") $el = $el.parentElement;
+            // put the Mermaid contents in the expected <div class="mermaid">
+            // plus keep the original contents in a nice <details>
+            $el.outerHTML = `
+    <div class="mermaid">${$el.textContent}</div>
+    <details>
+      <summary>Diagram source</summary>
+      <pre>${$el.textContent}</pre>
+    </details>
+  `;
+        });
+}
 
 onUnmounted(() => {
     window.removeEventListener("scroll", handleScroll);
@@ -133,18 +162,18 @@ function handleTocClick(e) {
 }
 
 // capture a mermaid chart in the on <pre></pre> or <code></code>
-function handleMermaidCharts(docParser){
-    let mermaidCharts = docParser.querySelectorAll('code');
-    if(mermaidCharts && mermaidCharts.length > 0){
+function handleMermaidCharts(docParser) {
+    let mermaidCharts = docParser.querySelectorAll("code");
+    if (mermaidCharts && mermaidCharts.length > 0) {
         // console.log(mermaidCharts);
-        mermaidCharts.forEach(chart => {
+        mermaidCharts.forEach((chart) => {
             console.log(chart);
-            if(chart.getAttribute('data-lang') === 'mermaid'){
-                chart.className = 'mermaid';
-                chart.classList.add('mermaid');
-                chart.classList.remove('torchlight');
+            if (chart.getAttribute("data-lang") === "mermaid") {
+                chart.className = "mermaid";
+                chart.classList.add("mermaid");
+                chart.classList.remove("torchlight");
             }
-        })
+        });
     }
     return;
 }
@@ -379,7 +408,7 @@ function handleMermaidCharts(docParser){
     opacity: 1;
 }
 
-:deep(.table-of-contents){
-    @apply mb-20 mt-6
+:deep(.table-of-contents) {
+    @apply mb-20 mt-6;
 }
 </style>
