@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\NoteController;
 use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,3 +25,4 @@ Route::get('/', function () {
 Route::get('/blog', [ArticleController::class, 'index'])->name('blog.index');
 Route::get('/blog/{article}', [ArticleController::class, 'show'])->name('blog.show');
 Route::get('/blog/tags/{tag}', [TagController::class, 'show'])->name('blog.tag');
+Route::get('/note', [NoteController::class, 'index'])->name('note.index');

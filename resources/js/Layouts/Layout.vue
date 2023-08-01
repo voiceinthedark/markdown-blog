@@ -25,6 +25,7 @@ watch(
                 <NavLink href="/blog/" :active="$page.url.startsWith('/blog')"
                     >Blog</NavLink
                 >
+                <NavLink href="/note/" :active="$page.url.startsWith('/note')">Notes</NavLink>
             </div>
         </header>
         <article

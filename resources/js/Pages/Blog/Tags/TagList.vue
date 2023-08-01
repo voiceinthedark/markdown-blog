@@ -1,6 +1,6 @@
 <template>
     <ul class="flex">
-        <li v-for="tag in tags" :key="tag" class="text-white hover:bg-sky-500">
+        <li v-for="tag in tags" :key="tag">
             <TagItem :tag="tag" />
         </li>
     </ul>
@@ -18,7 +18,7 @@ ul{
     list-style: none;
 }
 li {
-    @apply bg-sky-600 text-sm border rounded-md px-3 font-bold py-0 text-white;
+    @apply bg-sky-600 text-sm border rounded-md px-3 font-bold py-0 text-white hover:bg-sky-500;
     list-style: none;
 }
 </style>

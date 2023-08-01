@@ -88,6 +88,12 @@ class Article extends Model
         return $post;
     }
 
+    /**
+     * Retrieves all posts with a specific tag.
+     *
+     * @param string $tag The tag to filter the posts by.
+     * @return Collection The collection of posts with the specified tag.
+     */
     public function getTag($tag){
         $posts = [];
 
@@ -100,4 +106,6 @@ class Article extends Model
             return in_array($tag, $post['tags']);
         });
     }
+
+
 }
