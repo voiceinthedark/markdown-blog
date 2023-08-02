@@ -3,7 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build && vite build --ssr"
     },
     "devDependencies": {
         "@vitejs/plugin-vue": "^4.2.3",
@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@inertiajs/vue3": "^1.0.9",
+        "@vue/server-renderer": "^3.3.4",
         "mermaid": "^10.3.0"
     }
 }
