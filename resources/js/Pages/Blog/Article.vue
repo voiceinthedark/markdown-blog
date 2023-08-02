@@ -94,10 +94,9 @@ onMounted(async () => {
         sanitizeMermaidCode();
         mermaid.initialize({
             startOnLoad: true,
-            defaultRenderer: "elk",
         });
         renderMermaid();
-        console.log("nexttick");
+        // console.log("nexttick");
         });
 
     // await mermaid.run();
@@ -278,23 +277,20 @@ function handleMermaidCharts(docParser) {
     padding: 0.25rem;
 }
 
-:deep(div) {
-    width: 100%;
-}
-
 :deep(div img) {
     width: 100%;
 }
 
 :deep(blockquote p) {
+    font-family: "Roboto", sans-serif;
     font-size: 1.5rem;
     font-style: italic;
     margin: 1rem auto 1rem;
     max-width: 48rem;
-    background: #11446e;
+    background: #1073c4;
     padding: 0.88rem 1.5rem;
     border-radius: 10px;
-    border: 1px solid #085563;
+    border: 1px solid #000000;
 }
 
 :deep(ul) {
@@ -441,7 +437,10 @@ function handleMermaidCharts(docParser) {
     @apply mb-20 mt-6;
 }
 
-:deep(.nodeLabel) {
-    @apply text-sm text-white;
+:deep(.torchlight.has-focus-lines .line:not(.line-focus)) {
+    transition: filter 0.35s, opacity 0.35s;
+    filter: blur(0.095rem);
+    opacity: 0.65;
 }
+
 </style>

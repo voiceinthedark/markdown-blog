@@ -1,7 +1,7 @@
 ---
 title: How To Send data from a Vue Page to a persistent Layout
 published_at: 2023-07-30T00:39:00+03:00
-updated_at: 2023-07-31T20:30:00+03:00
+updated_at: 2023-08-02T22:56:00+03:00
 type: article
 description: How to send data from a vue page to a persistent layout in Laravel + inertiajs
 link: /2023/2023-07-30-how-to-send-data-from-page-to-layout
@@ -110,10 +110,22 @@ And then we simply pass it to the side layout as a prop:
 
 ## A Diagram of the solution
 
-![Solution Diagram](/images/2023-07-31-20-08-42.png){: style="width: 60%; margin: auto;"}
+> The solution diagram
 
-
-```mermaid
+<pre class="mermaid">
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#BB2528',
+      'primaryTextColor': '#fff',
+      'primaryBorderColor': '#7C0000',
+      'lineColor': '#F8B229',
+      'secondaryColor': '#006100',
+      'tertiaryColor': '#fff'      
+    }
+  }
+}%%
 stateDiagram-v2
     [*] --> Extract_TOC
     Extract_TOC --> Send_TOC_TO_Persistent_Layout
@@ -122,21 +134,8 @@ stateDiagram-v2
     Store_TOC_IN_Shared_Store --> Send_TOC_TO_Persistent_Layout
     Send_TOC_TO_Persistent_Layout --> Send_TOC_TO_Side_Layout
     Send_TOC_TO_Side_Layout --> [*]
-```
-
-
-
-<pre class="mermaid">
-graph LR
-A[Hello] --> B[How do u do]
 </pre>
 
-<pre class="mermaid">
-    graph TD 
-        A[Client]-->B[Load Balancer] 
-        B-->C[Server01] 
-        B-->D[Server02]
-  </pre>
 
 
 [^1]: [digital ocean global event bus](https://www.digitalocean.com/community/tutorials/vuejs-global-event-bus)

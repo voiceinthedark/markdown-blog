@@ -19,7 +19,7 @@ watch(
     <main class="grid grid-cols-1 lg:grid-cols-6">
         <header class="mt-20 rounded-r-sm lg:min-h-screen">
             <div
-                class="top-0 flex flex-col items-start gap-1 px-3 py-6 mb-6 text-2xl lg:sticky"
+                class="top-0 flex flex-col items-start gap-5 px-3 py-6 mb-6 text-2xl lg:sticky"
             >
                 <NavLink href="/" :active="$page.url === '/'">Home</NavLink>
                 <NavLink href="/blog/" :active="$page.url.startsWith('/blog')"

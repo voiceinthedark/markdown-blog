@@ -11,7 +11,21 @@ tags: [blog, markdown, timeline]
 
 # Markdown Blog Timeline
 
-<pre class="bg-white mermaid">
+<pre class="mermaid">
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#8B0000',
+      'primaryTextColor': '#fff',
+      'primaryBorderColor': '#543F3F',
+      'lineColor': '#F8B229',
+      'secondaryColor': '#26334a',
+      'secondaryTextColor': '#fff',
+      'tertiaryColor': '#a5a5a5'
+    }    
+  }
+}%%
 gantt
     title Markdown-blog
     dateFormat YYYY-MM-DD

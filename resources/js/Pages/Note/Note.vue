@@ -2,9 +2,45 @@
     <div v-html="note.body"></div>
 </template>
 <script setup>
+import { onMounted, nextTick } from "vue";
+import mermaid from "mermaid";
+
 defineProps({
     note: Object
 })
+
+onMounted(() => {
+
+
+    mermaid.init(null, document.querySelectorAll('.mermaid'));
+})
+
+
+
+function renderMermaid() {
+    mermaid.init(undefined, document.querySelectorAll(".mermaid"));
+}
+
+function sanitizeMermaidCode() {
+    document
+        .querySelectorAll("pre.mermaid, pre>code.language-mermaid")
+        .forEach(($el) => {
+            // $el.classList.remove("torchlight");
+            // if the second selector got a hit, reference the parent <pre>
+            if ($el.tagName === "CODE") $el = $el.parentElement;
+            // Debug
+            console.log(`Sanitizing element: ${$el.outerHTML}`);
+            // put the Mermaid contents in the expected <div class="mermaid">
+            // plus keep the original contents in a nice <details>
+            $el.outerHTML = `
+    <div class="mermaid">${$el.textContent}</div>
+    <details>
+      <summary>Diagram source</summary>
+      <pre>${$el.textContent}</pre>
+    </details>
+  `;
+        });
+}
 </script>
 
 <style scoped>
@@ -75,10 +111,6 @@ defineProps({
     margin: 1rem 0 1rem;
     max-width: 64rem;
     padding: 0.25rem;
-}
-
-:deep(div) {
-    width: 100%;
 }
 
 :deep(div img) {
