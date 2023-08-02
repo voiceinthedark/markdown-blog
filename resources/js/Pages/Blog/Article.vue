@@ -22,9 +22,10 @@
 
 <script setup>
 import { router } from "@inertiajs/vue3";
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, nextTick } from "vue";
 import { store } from "../../stores/useSharedStore";
 import TagList from "./Tags/TagList.vue";
+import mermaid from "mermaid";
 // defineOptions({
 //     layout: [Layout],
 //     name: "TableOfContent",
@@ -65,10 +66,9 @@ function extractTOC(article) {
     // Store the table of contents in the sharedData property of the store object.
     store.sharedData = toc && toc.length > 0 ? toc.item(0).outerHTML : "";
     // console.log(store.sharedData);
-    handleMermaidCharts(doc);
 }
 
-onMounted(() => {
+onMounted(async () => {
     extractTOC(props.article);
     // Handle scroll event
     window.addEventListener("scroll", handleScroll);
@@ -80,16 +80,45 @@ onMounted(() => {
         });
     }
 
-    // sanitizeMermaidCode();
-    router.reload();
+    let parser = new DOMParser();
+    let doc = parser.parseFromString(props.article.body, "text/html");
+    handleMermaidCharts(doc);
+    sanitizeMermaidCode();
+    renderMermaid();
+    mermaid.initialize({
+        startOnLoad: true,
+    });
+    console.log("loaded mermaid");
+
+    nextTick(() => {
+        sanitizeMermaidCode();
+        mermaid.initialize({
+            startOnLoad: true,
+            defaultRenderer: "elk",
+        });
+        renderMermaid();
+        console.log("nexttick");
+        });
+
+    // await mermaid.run();
+    mermaid.init(null, document.querySelectorAll('.mermaid'));
+
+    // router.reload();
 });
+
+function renderMermaid() {
+    mermaid.init(undefined, document.querySelectorAll(".mermaid"));
+}
 
 function sanitizeMermaidCode() {
     document
         .querySelectorAll("pre.mermaid, pre>code.language-mermaid")
         .forEach(($el) => {
+            $el.classList.remove("torchlight");
             // if the second selector got a hit, reference the parent <pre>
             if ($el.tagName === "CODE") $el = $el.parentElement;
+            // Debug
+            console.log(`Sanitizing element: ${$el.outerHTML}`);
             // put the Mermaid contents in the expected <div class="mermaid">
             // plus keep the original contents in a nice <details>
             $el.outerHTML = `
@@ -167,8 +196,8 @@ function handleMermaidCharts(docParser) {
     if (mermaidCharts && mermaidCharts.length > 0) {
         // console.log(mermaidCharts);
         mermaidCharts.forEach((chart) => {
-            console.log(chart);
             if (chart.getAttribute("data-lang") === "mermaid") {
+                console.log(chart);
                 chart.className = "mermaid";
                 chart.classList.add("mermaid");
                 chart.classList.remove("torchlight");
@@ -410,5 +439,9 @@ function handleMermaidCharts(docParser) {
 
 :deep(.table-of-contents) {
     @apply mb-20 mt-6;
+}
+
+:deep(.nodeLabel) {
+    @apply text-sm text-white;
 }
 </style>

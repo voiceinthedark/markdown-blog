@@ -30,7 +30,7 @@ createInertiaApp({
 const config = {
     theme: "default",
     logLevel: "error",
-    securityLevel: "loose",
+    securityLevel: "antiscript",
     startOnLoad: true,
     arrowMarkerAbsolute: false,
 
@@ -83,3 +83,4 @@ const config = {
     },
 };
 mermaid.initialize(config);
+await mermaid.run();

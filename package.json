@@ -17,6 +17,6 @@
     "dependencies": {
         "@inertiajs/vue3": "^1.0.9",
         "@vue/server-renderer": "^3.3.4",
-        "mermaid": "^10.3.0"
+        "mermaid": "^9.4.0"
     }
 }
