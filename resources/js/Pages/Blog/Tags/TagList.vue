@@ -1,5 +1,5 @@
 <template>
-    <ul class="flex">
+    <ul class="flex flex-wrap justify-start gap-1">
         <li v-for="tag in tags" :key="tag">
             <TagItem :tag="tag" />
         </li>
@@ -18,7 +18,7 @@ ul{
     list-style: none;
 }
 li {
-    @apply bg-sky-600 text-sm border rounded-md px-3 font-bold py-0 text-white hover:bg-sky-500;
+    @apply bg-cyan-600 text-xs border rounded-md px-3 py-1 text-white hover:bg-sky-500;
     list-style: none;
 }
 </style>

@@ -4,6 +4,7 @@ import NavLink from "../Components/Shared/NavLink.vue";
 import { store } from "../stores/useSharedStore";
 import { watch, ref } from "vue";
 import SideLayout from "./SideLayout.vue";
+import IconGithub from "../Components/Icons/IconGithub.vue";
 
 let tableOfContents = ref(null);
 
@@ -13,6 +14,7 @@ watch(
         tableOfContents.value = newVal;
     }
 );
+
 </script>
 
 <template>
@@ -26,6 +28,7 @@ watch(
                     >Blog</NavLink
                 >
                 <NavLink href="/note/" :active="$page.url.startsWith('/note')">Notes</NavLink>
+                <NavLink href="/about/" :active="$page.url.startsWith('/about')">About</NavLink>
             </div>
         </header>
         <article
@@ -36,10 +39,35 @@ watch(
         <aside>
             <SideLayout :toc="tableOfContents" />
         </aside>
+        <footer class="w-screen py-12 mt-12 bg-gray-800/50">
+            <div class="flex items-center justify-center gap-2">
+                <span>Copyright &copy; 2023</span>
+                <span id="github" class="w-7 h-7">
+                    <a href="https://github.com/voiceinthedark" target="_blank">
+                        <IconGithub />
+                    </a>
+                </span>
+            </div>
+        </footer>
     </main>
 </template>
 
 <style scoped>
+
+#github:hover{
+    animation: turn 2s ease-in 0s infinite alternate;
+    transition: all 0.3s ease;
+}
+
+@keyframes turn {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .slide-enter-active,
 .slide-leave-active {
     transition: all 0.3s ease;

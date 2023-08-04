@@ -136,7 +136,7 @@ stateDiagram-v2
     Send_TOC_TO_Side_Layout --> [*]
 </pre>
 
-
+Until next time.
 
 [^1]: [digital ocean global event bus](https://www.digitalocean.com/community/tutorials/vuejs-global-event-bus)
 

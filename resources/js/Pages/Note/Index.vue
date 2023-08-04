@@ -1,5 +1,5 @@
 <template>
-    <ul class="flex flex-col gap-1 mt-20">
+    <ul class="flex flex-col gap-1 my-20">
         <li v-for="note in notes" :key="note.id">
             <Link :href="'/note/' + note.id">
                 {{ note.meta.title }}
@@ -9,7 +9,6 @@
 </template>
 
 <script setup>
-import Note from './Note.vue';
 defineProps({
     notes: Array,
 });

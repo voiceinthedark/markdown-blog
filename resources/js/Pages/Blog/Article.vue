@@ -9,13 +9,16 @@
         </div>
         <div class="flex justify-between">
             <span class="text-sm text-gray-300">{{
-                formatDate(article.meta.published_at * 1000)
+                formatDate(article.meta.published_at)
             }}</span>
             <TagList :tags="article.tags" />
         </div>
-        <div class="text-2xl text-blue-400 lg:text-7xl">
+        <div class="text-2xl text-sky-600 lg:text-6xl">
             {{ article.meta.title }}
         </div>
+        <template v-if="parseInt(article.meta.published_at) < parseInt(article.meta.updated_at)">
+            <span class="px-2 py-1 text-sm text-white bg-red-500">Article last updated on: {{ formatDate(article.meta.updated_at) }}</span>
+        </template>
         <div v-html="article.body"></div>
     </div>
 </template>
@@ -50,6 +53,13 @@ function formatDate(date) {
         day: "numeric",
         weekday: "short",
     };
+    // if date is a string, parse it into a Date object.
+    if (typeof date === "string") {
+        date = new Date(date);
+    }else{
+        date *= 1000;
+    }
+
     return new Date(date).toLocaleDateString("en-GB", options);
 }
 // This function extracts the table of contents (TOC) from an article.
@@ -67,6 +77,7 @@ function extractTOC(article) {
     store.sharedData = toc && toc.length > 0 ? toc.item(0).outerHTML : "";
     // console.log(store.sharedData);
 }
+
 
 onMounted(async () => {
     extractTOC(props.article);
@@ -101,6 +112,7 @@ onMounted(async () => {
 
     // await mermaid.run();
     mermaid.init(null, document.querySelectorAll('.mermaid'));
+
 
     // router.reload();
 });

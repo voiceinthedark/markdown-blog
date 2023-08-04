@@ -83,4 +83,4 @@ const config = {
     },
 };
 mermaid.initialize(config);
-await mermaid.run();
+// await mermaid.run();
