@@ -1,0 +1,1 @@
+import{_ as t,o,m as n,b as _,c}from"./app-0ad4100e.js";const d=["innerHTML"],s={__name:"Note",props:{note:Object},setup(e){return o(()=>{n.init(null,document.querySelectorAll(".mermaid"))}),(a,r)=>(_(),c("div",{innerHTML:e.note.body},null,8,d))}},i=t(s,[["__scopeId","data-v-e21d33dd"]]);export{i as default};

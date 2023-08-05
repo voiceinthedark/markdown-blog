@@ -1,0 +1,1 @@
+import{h as a,b as s,i as o,w as n,d as r,t as c}from"./app-0ad4100e.js";const i={class:"text-white"},p={__name:"TagItem",props:{tag:String},setup(t){return(_,g)=>{const e=a("Link");return s(),o(e,{href:"/blog/tags/"+t.tag},{default:n(()=>[r("span",i,c(t.tag),1)]),_:1},8,["href"])}}};export{p as default};

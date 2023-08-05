@@ -1,0 +1,8 @@
+stateDiagram-v2
+    [*] --> Extract_TOC
+    Extract_TOC --> Send_TOC_TO_Persistent_Layout
+    Extract_TOC --> Store_TOC_IN_Shared_Store
+    Send_TOC_TO_Persistent_Layout --> Store_TOC_IN_Shared_Store
+    Store_TOC_IN_Shared_Store --> Send_TOC_TO_Persistent_Layout
+    Send_TOC_TO_Persistent_Layout --> Send_TOC_TO_Side_Layout
+    Send_TOC_TO_Side_Layout --> [*]
