@@ -22,41 +22,6 @@
 <body class="text-white bg-gray-900">
     @inertia
 
-    {{-- <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        mermaid.initialize({ startOnLoad: true });
-    </script> --}}
-    <script>
-        // MERMAID_CONFIG = {
-        // startOnLoad: true
-        // }
-
-        // if (window['MERMAID_CONFIG']) {
-        //     window['MERMAID_CONFIG'].startOnLoad = false
-        //     window['MERMAID_CONFIG'].cloneCssStyles = false
-        //     window['MERMAID_CONFIG'].theme = "default"
-        // }
-        // mermaid.initialize(window['MERMAID_CONFIG'] || {})
-        // if (typeof(window['Reveal']) !== 'undefined') {
-        //     function mermaidRevealHelper(event) {
-        //         var currentSlide = event.currentSlide
-        //         var diagrams = currentSlide.querySelectorAll('.mermaid');
-        //         for (var i = 0; i < diagrams.length; i++) {
-        //             var diagram=diagrams[i];
-        //             if (!diagram.hasAttribute('data-processed')) {
-        //                 mermaid.init(null, diagram, ()=> {
-        //                 Reveal.slide(event.indexh, event.indexv)
-        //                 });
-        //             }
-        //         }
-        //     }
-        //     Reveal.addEventListener('slidechanged', mermaidRevealHelper)
-        //     Reveal.addEventListener('ready', mermaidRevealHelper)
-        //     } else {
-        //     mermaid.init(null, document.querySelectorAll('.mermaid'))
-        //     }
-    </script>
-
 </body>
 
 </html>
