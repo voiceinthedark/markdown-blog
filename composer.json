@@ -69,5 +69,8 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "platform": {
+        "php": "8.1.0"
+    }
 }
