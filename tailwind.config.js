@@ -16,6 +16,6 @@ export default {
             bodymono: ["Source Code Pro"],
         },
     },
-    plugins: [],
+    plugins: [require("@tailwindcss/typography")],
 };
 

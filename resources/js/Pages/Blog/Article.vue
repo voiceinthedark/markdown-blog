@@ -117,10 +117,27 @@ onMounted(async () => {
     // router.reload();
 });
 
+/**
+ * Renders the Mermaid diagrams on the page.
+ *
+ * @param {undefined} undefined - The first parameter is not used.
+ * @param {NodeList} document.querySelectorAll(".mermaid") - The second parameter is a NodeList of elements with the class "mermaid".
+ * @return {undefined} This function does not return any value.
+ */
 function renderMermaid() {
     mermaid.init(undefined, document.querySelectorAll(".mermaid"));
 }
 
+/**
+ * Sanitizes the Mermaid code by removing the "torchlight" class from the
+ * elements with the classes "mermaid" or "language-mermaid". If the element
+ * has the class "language-mermaid", it references the parent <pre> element.
+ * The function then puts the Mermaid contents in a <div> element with the
+ * class "mermaid" and keeps the original contents in a <details> element.
+ *
+ * @param {type} $el - the element to be sanitized
+ * @return {type} undefined
+ */
 function sanitizeMermaidCode() {
     document
         .querySelectorAll("pre.mermaid, pre>code.language-mermaid")
@@ -133,12 +150,12 @@ function sanitizeMermaidCode() {
             // put the Mermaid contents in the expected <div class="mermaid">
             // plus keep the original contents in a nice <details>
             $el.outerHTML = `
-    <div class="mermaid">${$el.textContent}</div>
-    <details>
-      <summary>Diagram source</summary>
-      <pre>${$el.textContent}</pre>
-    </details>
-  `;
+                <div class="mermaid">${$el.textContent}</div>
+                <details>
+                    <summary>Diagram source</summary>
+                    <pre>${$el.textContent}</pre>
+                </details>
+                `;
         });
 }
 
@@ -177,6 +194,12 @@ function handleScroll() {
     store.activeHeading = active;
 }
 
+/**
+ * Handles the click event on a heading element.
+ *
+ * @param {Event} e - The click event object.
+ * @return {undefined} This function does not return a value.
+ */
 function handleHeadingClick(e) {
     e.preventDefault();
     window.scrollTo({
@@ -185,6 +208,12 @@ function handleHeadingClick(e) {
     });
 }
 
+/**
+ * Handles the click event on the table of contents.
+ *
+ * @param {Event} e - The click event object.
+ * @return {void} This function does not return any value.
+ */
 function handleTocClick(e) {
     e.preventDefault();
     // console.log(e.target.href.split('#')[1]);

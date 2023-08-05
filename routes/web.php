@@ -6,6 +6,8 @@ use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\TagController;
+use App\Utils\Markdown;
+use Illuminate\Support\Facades\File;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +29,8 @@ Route::get('/blog/{article}', [ArticleController::class, 'show'])->name('blog.sh
 Route::get('/blog/tags/{tag}', [TagController::class, 'show'])->name('blog.tag');
 Route::get('/note', [NoteController::class, 'index'])->name('note.index');
 Route::get('/note/{note}', [NoteController::class, 'show'])->name('note.show');
+Route::get('/about', function () {
+    $converter = new Markdown();
+    $about = File::get(resource_path('/views/about/about.md'));
+    return Inertia::render('About', ['content' => $converter->convert($about)]);
+})->name('about');
