@@ -14,6 +14,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "league/commonmark": "^2.4",
+        "spatie/laravel-export": "^0.3.11",
         "spatie/yaml-front-matter": "^2.0",
         "torchlight/torchlight-commonmark": "^0.5.5"
     },
