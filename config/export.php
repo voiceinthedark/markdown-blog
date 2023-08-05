@@ -14,7 +14,13 @@ return [
      *
      * For example: "about", "posts/featured"
      */
-    'paths' => [],
+    'paths' => [
+        '/',
+        'blog',
+        'about',
+        'note',
+        'blog/tags',
+    ],
 
     /*
      * Files and folders that should be included in the build. Expects
@@ -57,7 +63,7 @@ return [
      * You can skip these by adding a `--skip-{name}` flag to the command.
      */
     'before' => [
-        // 'assets' => '/usr/local/bin/yarn production',
+        // 'assets' => '/usr/local/bin/npm run build',
     ],
 
     /*
@@ -67,7 +73,7 @@ return [
      * You can skip these by adding a `--skip-{name}` flag to the command.
      */
     'after' => [
-        // 'deploy' => '/usr/local/bin/netlify deploy --prod',
+        // 'deploy' => '/usr/local/bin/npm run deploy',
     ],
 
 ];
